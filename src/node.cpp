@@ -31,4 +31,33 @@ bool Node::is_adjacent(Node* n)
   return false; 
 }
 
+void Node::erase_node(Node* n)
+{
+  std::vector<Edge*>::iterator it_e = this->edges.begin();
+  while (it_e != this->edges.end())
+  {
+    Edge* e = *it_e;
+    if (e->contains(n))
+    {
+      this->edges.erase(it_e);
+      break;
+    }
+    else
+      ++it_e;
+  }
+  
+  std::vector<Node*>::iterator it_n = this->nodes.begin();
+  while (it_n != this->nodes.end())
+  {
+    Node* node = *it_n;
+    if (node == n)
+    {
+      this->nodes.erase(it_n);
+      return;
+    }
+    else
+      ++it_n;
+  }
+}
+
 Node::~Node() {}

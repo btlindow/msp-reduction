@@ -18,6 +18,10 @@ namespace discrete
     ~Graph();
     void add_node(Node*);
     void add_edge(Edge*);
+    void erase_node(Node*);
+    void erase_edge(Edge*);
+    Node* get_node_by_idx(unsigned int);
+    int get_nodes_size() { return this->nodes.size(); }
 
   private:
     std::vector<Node*> nodes;

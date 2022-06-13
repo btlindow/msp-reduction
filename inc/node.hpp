@@ -20,6 +20,7 @@ namespace discrete
     void add_node(Node*);
     void add_edge(Edge*);
     bool is_adjacent(Node*);
+    void erase_node(Node*);
 
   private:
     unsigned int idx;

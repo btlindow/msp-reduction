@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string.h>
+#include <fstream>
 #include "discrete.hpp"
 
 using namespace std;
@@ -32,10 +33,40 @@ void print_help(void)
 
 void run_msr(int argc, char* argv[])
 {
-  cout << "running msr" << endl;
+  if (argc != 3)
+  {
+    cout << "invalid number of arguments" << endl;
+    return;
+  }
+  
+  ifstream graph_file (argv[2]);
+  if (!graph_file.is_open())
+  {
+    cout << "input file not found" << endl;
+    return;
+  }
+  graph_file.close();
+  find_msc(argv[2]);
 }
 
 void generate_graph(int argc, char* argv[])
 {
-  cout << "generating graph" << endl; 
+  if (argc != 4)
+  {
+    cout << "invalid number of arguments" << endl;
+    return;
+  }
+
+  int number_nodes = 0;
+  try
+  {
+    number_nodes = stoi(argv[2]);
+  }
+  catch (const std::exception&)
+  {
+    cout << "invalid number of nodes" << endl;
+    return;
+  }
+  
+  generate_graph_file(number_nodes, argv[3]);
 }
