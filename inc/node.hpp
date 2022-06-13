@@ -17,13 +17,6 @@ namespace discrete
     
   };
 
-  Node::Node()
-  {
-  }
-
-  Node::~Node()
-  {
-  }
 }
 
 #endif

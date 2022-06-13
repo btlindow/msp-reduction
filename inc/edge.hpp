@@ -17,13 +17,6 @@ namespace discrete
     
   };
 
-  Edge::Edge()
-  {
-  }
-
-  Edge::~Edge()
-  {
-  }
 }
 
 

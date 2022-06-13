@@ -16,14 +16,6 @@ namespace discrete
   private:
     
   };
-
-  Graph::Graph()
-  {
-  }
-
-  Graph::~Graph()
-  {
-  }
 }
 
 
