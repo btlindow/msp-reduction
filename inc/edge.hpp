@@ -1,8 +1,11 @@
 #ifndef EDGE_HPP
 #define EDGE_HPP
 
+#include "node.hpp"
+
 namespace discrete
 {
+  class Node;
   class Edge
   {
   public:
@@ -12,8 +15,11 @@ namespace discrete
     Edge &operator=(Edge &&) = default;
     Edge &operator=(const Edge &) = default;
     ~Edge();
+    bool contains(Node*);
 
   private:
+    Node* node0;
+    Node* node1;
     
   };
 
