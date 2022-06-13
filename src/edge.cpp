@@ -2,7 +2,11 @@
 
 using namespace discrete;
 
-Edge::Edge() {}
+Edge::Edge(Node* node0, Node* node1)
+{
+  this->node0 = node0;
+  this->node1 = node1;
+}
 
 bool Edge::contains(Node* n)
 {

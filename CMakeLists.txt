@@ -1,5 +1,6 @@
 cmake_minimum_required(VERSION 3.22.1)
 project(graph)
+set(CMAKE_BUILD_TYPE Debug)
 include_directories(inc)
 file(GLOB SOURCES src/*.cpp)
 add_executable(graph ${SOURCES})

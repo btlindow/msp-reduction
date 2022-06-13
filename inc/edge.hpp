@@ -9,7 +9,7 @@ namespace discrete
   class Edge
   {
   public:
-    Edge();
+    Edge(Node*, Node*);
     Edge(Edge &&) = default;
     Edge(const Edge &) = default;
     Edge &operator=(Edge &&) = default;
