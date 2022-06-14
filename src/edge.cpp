@@ -2,8 +2,9 @@
 
 using namespace discrete;
 
-Edge::Edge(Node* node0, Node* node1)
+Edge::Edge(unsigned int idx, Node* node0, Node* node1)
 {
+  this->idx = idx;
   this->node0 = node0;
   this->node1 = node1;
 }

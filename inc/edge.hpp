@@ -9,15 +9,11 @@ namespace discrete
   class Edge
   {
   public:
-    Edge(Node*, Node*);
-    Edge(Edge &&) = default;
+    Edge(unsigned int, Node*, Node*);
     Edge(const Edge &) = default;
-    Edge &operator=(Edge &&) = default;
-    Edge &operator=(const Edge &) = default;
     ~Edge();
     bool contains(Node*);
-
-  private:
+    unsigned int idx;
     Node* node0;
     Node* node1;
     
