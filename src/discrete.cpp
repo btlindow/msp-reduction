@@ -15,10 +15,12 @@ void discrete::generate_graph_file(int number_nodes, char* filename)
   int num_edges = rand() % max_edges + min_edges;
   unsigned int count = 0;
   Graph g;
-  
+ 
+  /* Add Nodes To Graph */
   for (int i = 0; i < number_nodes; i++)
     g.add_node(new Node(i, nullptr));
   
+  /* Make Graph Complete */
   for (int i = 0; i < number_nodes; i++)
   {
     for (int j = i + 1; j < number_nodes; j++)
@@ -34,8 +36,18 @@ void discrete::generate_graph_file(int number_nodes, char* filename)
     }
   }
 
-  //todo: remove nodes to achieve desired amount
+  /* Remove Random Edges From Graph */
+  for (int i = 0; i < num_edges; i++)
+  {
+    int ridx = rand() % g.edges.size();
+    auto it = g.edges.begin();
+    std::advance(it, ridx);
+    g.remove_edge(it->second);
+  }
 
+  /* Ensure Graph Is Connected */
+  //todo  
+  
   ofstream graph_file;
   graph_file.open(filename);
   graph_file << "testing 1 2 3 4" << endl;
