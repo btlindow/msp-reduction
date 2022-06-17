@@ -37,7 +37,7 @@ void discrete::generate_graph_file(int number_nodes, char* filename)
   }
 
   /* Remove Random Edges From Graph */
-  for (int i = 0; i < num_edges; i++)
+  for (int i = 0; i < max_edges - num_edges; i++)
   {
     int ridx = rand() % g.edges.size();
     auto it = g.edges.begin();

@@ -14,4 +14,12 @@ bool Edge::contains(Node* n)
   return (n == this->node0 || n == this->node1);
 }
 
+void Edge::remove_self()
+{
+  this->node0->nodes.erase(this->node1->idx);
+  this->node1->nodes.erase(this->node0->idx);
+  this->node0->edges.erase(this->idx);
+  this->node1->edges.erase(this->idx);
+}
+
 Edge::~Edge() {}

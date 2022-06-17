@@ -16,16 +16,15 @@ void Graph::add_edge(Edge* e)
 
 void Graph::remove_node(Node* n)
 {
-  n->remove_self();
   for (auto& [idx, edge]: n->edges)
     this->edges.erase(edge->idx);
   this->nodes.erase(n->idx);
+  n->remove_self();
 }
 
 void Graph::remove_edge(Edge* e)
 {
-  e->node0->remove(e->node1, e);
-  e->node1->remove(e->node0, e);
+  e->remove_self();
   this->edges.erase(e->idx);
 }
 

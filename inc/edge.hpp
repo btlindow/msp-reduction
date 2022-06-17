@@ -13,6 +13,7 @@ namespace discrete
     Edge(const Edge &) = default;
     ~Edge();
     bool contains(Node*);
+    void remove_self();
     unsigned int idx;
     Node* node0;
     Node* node1;
