@@ -7,8 +7,9 @@
 
 namespace discrete
 {
-  void generate_graph_file(int, char*); 
+  Graph* generate_graph(int); 
   void find_msc(char*);
+  bool is_graph_connected(Graph*);
 }
 
 #endif
