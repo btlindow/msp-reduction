@@ -28,4 +28,10 @@ void Graph::remove_edge(Edge* e)
   this->edges.erase(e->idx);
 }
 
-Graph::~Graph() {}
+Graph::~Graph() 
+{
+  for (auto n: this->nodes)
+    delete n.second;
+  for (auto e: this->edges)
+    delete e.second;
+}

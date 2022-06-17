@@ -8,7 +8,7 @@ using namespace discrete;
 
 void parse_args(int, char*[]);
 void print_help(void);
-void run_msr(int, char*[]);
+void run_msc(int, char*[]);
 void generate_graph(int, char*[]);
 
 int main(int argc, char* argv[])
@@ -20,18 +20,18 @@ int main(int argc, char* argv[])
 void parse_args(int argc, char* argv[])
 {
   if (argc <= 1) print_help();
-  else if (strcmp(argv[1], "--msr") == 0) run_msr(argc, argv);
+  else if (strcmp(argv[1], "--msc") == 0) run_msc(argc, argv);
   else if (strcmp(argv[1], "--generate") == 0) generate_graph(argc, argv);
 }
 
 void print_help(void)
 {
   cout << "usage:" << endl;
-  cout << "\tgraph --generate <number_nodes> <output_file>" << endl;
-  cout << "\tgraph --msr <input_file" << endl;
+  cout << "\tgraph --generate <number_nodes> <density:20-90>" << endl;
+  cout << "\tgraph --msc <input_file>" << endl;
 }
 
-void run_msr(int argc, char* argv[])
+void run_msc(int argc, char* argv[])
 {
   if (argc != 3)
   {
@@ -76,9 +76,9 @@ void generate_graph(int argc, char* argv[])
     delete g;
     g = generate_random_graph(number_nodes, density);
   }
-  write_graph_file_el(g, "el.graph");
-  write_graph_file_al(g, "al.graph");
-  write_graph_file_m(g, "m.graph");
+  write_graph_file_el(g, "graph.el");
+  write_graph_file_al(g, "graph.al");
+  write_graph_file_m(g, "graph.m");
   
   cout << "g->edges.size(): " << g->edges.size() << endl;
 }

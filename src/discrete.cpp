@@ -59,11 +59,6 @@ Graph* discrete::generate_random_graph(int number_nodes, int density)
   return g; 
 }
 
-void discrete::find_msc(char* filename)
-{
-  ifstream graph_file(filename); 
-}
-
 bool discrete::is_graph_connected(Graph* g)
 {
   map<Node*, bool> node_map;

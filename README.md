@@ -28,4 +28,15 @@ A graph is a construct in discrete mathematics that contains other discrete cons
  ## Tools
  I am using CMake because whats easier than having a machine write your Makefile for you.  
  I am using Astro Vim because its cool and forcing me to get better at Vim.  
- I am using C++ because after writing a ton of embedded C, I should probably get better at some OOP.
+ I am using C++ because after writing a ton of embedded C, I should probably get better at some OOP.  
+
+ ## How To Use 
+ ```bash
+ git clone https://github.com/btlindow/msp-reduction.git
+ cd msp-reduction
+ mkdir build
+ cd build
+ cmake ..
+ make
+ ./graph
+```
