@@ -12,7 +12,7 @@ using namespace discrete;
 
 static bool initialized = false;
 
-Graph* discrete::generate_random_graph(int number_nodes)
+Graph* discrete::generate_random_graph(int number_nodes, int density)
 {
   if (!initialized) 
   {
@@ -21,7 +21,9 @@ Graph* discrete::generate_random_graph(int number_nodes)
   }
   int max_edges = (number_nodes * (number_nodes - 1)) / 2;
   int min_edges = number_nodes - 1;
-  int num_edges = rand() % max_edges + min_edges;
+  density = (density < 20 || density > 90) ? 50 : density;
+  double add_edges = (double)(max_edges - min_edges);
+  int num_edges = min_edges + (int)(add_edges * (double)(density) / 100);
   unsigned int count = 0;
   Graph* g = new Graph();
  
@@ -84,7 +86,7 @@ bool discrete::is_graph_connected(Graph* g)
   return g->nodes.size() == node_map.size(); 
 }
 
-void discrete::write_graph_file_el(Graph* g, char* filename)
+void discrete::write_graph_file_el(Graph* g, const char* filename)
 {
   ofstream graph_file;
   graph_file.open(filename);
@@ -101,7 +103,7 @@ void discrete::write_graph_file_el(Graph* g, char* filename)
 }
 
 
-void discrete::write_graph_file_al(Graph* g, char* filename)
+void discrete::write_graph_file_al(Graph* g, const char* filename)
 {
   ofstream graph_file;
   graph_file.open(filename);
@@ -115,7 +117,7 @@ void discrete::write_graph_file_al(Graph* g, char* filename)
   graph_file.close();
 }
   
-void discrete::write_graph_file_m(Graph* g, char* filename)
+void discrete::write_graph_file_m(Graph* g, const char* filename)
 {
   ofstream graph_file;
   graph_file.open(filename);

@@ -58,23 +58,27 @@ void generate_graph(int argc, char* argv[])
   }
 
   int number_nodes = 0;
+  int density = 0;
   try
   {
     number_nodes = stoi(argv[2]);
+    density = stoi(argv[3]);
   }
   catch (const std::exception&)
   {
-    cout << "invalid number of nodes" << endl;
+    cout << "invalid number of nodes or density" << endl;
     return;
   }
   
-  Graph* g = generate_random_graph(number_nodes);
+  Graph* g = generate_random_graph(number_nodes, density);
   while(!is_graph_connected(g))
   {
     delete g;
-    g = generate_random_graph(number_nodes);
+    g = generate_random_graph(number_nodes, density);
   }
-  //write_graph_file_el(g, argv[3]);
-  //write_graph_file_al(g, argv[3]);
-  write_graph_file_m(g, argv[3]);
+  write_graph_file_el(g, "el.graph");
+  write_graph_file_al(g, "al.graph");
+  write_graph_file_m(g, "m.graph");
+  
+  cout << "g->edges.size(): " << g->edges.size() << endl;
 }
