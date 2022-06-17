@@ -68,10 +68,11 @@ void generate_graph(int argc, char* argv[])
     return;
   }
   
-  Graph* g = generate_graph(number_nodes);
+  Graph* g = generate_random_graph(number_nodes);
   while(!is_graph_connected(g))
   {
     delete g;
-    g = generate_graph(number_nodes);
+    g = generate_random_graph(number_nodes);
   }
+  write_graph_file_el(g, argv[3]);
 }

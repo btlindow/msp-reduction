@@ -7,9 +7,12 @@
 
 namespace discrete
 {
-  Graph* generate_graph(int); 
+  Graph* generate_random_graph(int); 
   void find_msc(char*);
   bool is_graph_connected(Graph*);
+  void write_graph_file_el(Graph*, char*);
+  void write_graph_file_al(Graph*, char*);
+  void write_graph_file_m(Graph*, char*);
 }
 
 #endif

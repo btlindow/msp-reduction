@@ -12,7 +12,7 @@ using namespace discrete;
 
 static bool initialized = false;
 
-Graph* discrete::generate_graph(int number_nodes)
+Graph* discrete::generate_random_graph(int number_nodes)
 {
   if (!initialized) 
   {
@@ -84,3 +84,29 @@ bool discrete::is_graph_connected(Graph* g)
   return g->nodes.size() == node_map.size(); 
 }
 
+void discrete::write_graph_file_el(Graph* g, char* filename)
+{
+  ofstream graph_file;
+  graph_file.open(filename);
+  map<Edge*, bool> edge_map;
+  for (auto &[idx, edge]: g->edges)
+  {
+    if (!edge_map[edge])
+    {
+      graph_file << edge->node0->idx << " " << edge->node1->idx << endl;
+      edge_map[edge] = true;
+    }
+  }
+  graph_file.close();
+}
+
+
+void discrete::write_graph_file_al(Graph* g, char* filename)
+{
+  
+}
+  
+void discrete::write_graph_file_m(Graph* g, char* filename)
+{
+  
+}
