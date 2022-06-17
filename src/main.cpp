@@ -74,5 +74,7 @@ void generate_graph(int argc, char* argv[])
     delete g;
     g = generate_random_graph(number_nodes);
   }
-  write_graph_file_el(g, argv[3]);
+  //write_graph_file_el(g, argv[3]);
+  //write_graph_file_al(g, argv[3]);
+  write_graph_file_m(g, argv[3]);
 }

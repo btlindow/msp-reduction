@@ -103,10 +103,34 @@ void discrete::write_graph_file_el(Graph* g, char* filename)
 
 void discrete::write_graph_file_al(Graph* g, char* filename)
 {
-  
+  ofstream graph_file;
+  graph_file.open(filename);
+  for (auto &[idx, node]: g->nodes)
+  {
+    graph_file << node->idx;
+    for (auto &[sidx, n]: node->nodes)
+      graph_file << " " << n->idx; 
+    graph_file << endl;
+  }
+  graph_file.close();
 }
   
 void discrete::write_graph_file_m(Graph* g, char* filename)
 {
-  
+  ofstream graph_file;
+  graph_file.open(filename);
+  for (int i = 0; i < g->nodes.size(); i++)
+  {
+    for (int j = 0; j < g->nodes.size(); j++)
+    {
+      if (i == j)
+        graph_file << "0 ";
+      else if (g->nodes[i]->is_adjacent(g->nodes[j]))
+        graph_file << "1 ";
+      else
+        graph_file << "0 ";
+    }
+    graph_file << endl;
+  }
+  graph_file.close();
 }
