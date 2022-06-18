@@ -11,7 +11,7 @@ namespace discrete
   {
   public:
     Graph();
-    Graph(const Graph &) = default;
+    Graph(Graph*);
     ~Graph();
     void add_node(Node*);
     void remove_node(Node*);
@@ -22,6 +22,5 @@ namespace discrete
     std::map<unsigned int, Edge*> edges;
   };
 }
-
 
 #endif

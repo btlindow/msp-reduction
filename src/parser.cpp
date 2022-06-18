@@ -14,14 +14,15 @@ static Graph* parse_el_file(char* filename);
 static Graph* parse_al_file(char* filename);
 static Graph* parse_m_file(char* filename);
 
-void discrete::find_msc(char* filename)
+Graph* discrete::parse_graph_file(char* filename)
 {
   Graph* g = parse_file(filename);
   if (!g)
   {
     cout << "Couldn't parse file" << endl;
-    return;
+    return nullptr;
   }
+  return g;
 }
 
 Graph* parse_file(char* filename)

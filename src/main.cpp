@@ -46,7 +46,8 @@ void run_msc(int argc, char* argv[])
     return;
   }
   graph_file.close();
-  find_msc(argv[2]);
+  Graph* g = parse_graph_file(argv[2]);
+  find_msc(g);
 }
 
 void generate_graph(int argc, char* argv[])
