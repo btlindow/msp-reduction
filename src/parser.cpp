@@ -64,8 +64,7 @@ Graph* parse_el_file(char* filename)
     n1->add_edge(e);
     g->add_edge(e);
   }
-  cout << "g->nodes.size(): " << g->nodes.size() << endl;
-  cout << "g->edges.size(): " << g->edges.size() << endl;
+  g->print();
   return g;
 }
 
@@ -106,8 +105,7 @@ Graph* parse_al_file(char* filename)
       }
     }
   }
-  cout << "g->nodes.size(): " << g->nodes.size() << endl;
-  cout << "g->edges.size(): " << g->edges.size() << endl;
+  g->print();
   return g;
 }
 
@@ -148,7 +146,6 @@ Graph* parse_m_file(char* filename)
     }
     idx++; 
   }
-  cout << "g->nodes.size(): " << g->nodes.size() << endl;
-  cout << "g->edges.size(): " << g->edges.size() << endl;
+  g->print();
   return g;
 }

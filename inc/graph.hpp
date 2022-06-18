@@ -17,6 +17,7 @@ namespace discrete
     void remove_node(Node*);
     void add_edge(Edge*);
     void remove_edge(Edge*);
+    void print();
     std::map<unsigned int, Node*> nodes;
     std::map<unsigned int, Edge*> edges;
   };

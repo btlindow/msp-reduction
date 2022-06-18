@@ -1,5 +1,7 @@
+#include <iostream>
 #include "graph.hpp"
 
+using namespace std;
 using namespace discrete;
 
 Graph::Graph() {}
@@ -26,6 +28,17 @@ void Graph::remove_edge(Edge* e)
 {
   e->remove_self();
   this->edges.erase(e->idx);
+}
+
+void Graph::print()
+{
+  size_t num_nodes = this->nodes.size();
+  size_t num_edges = this->edges.size();
+  size_t max_edges = ((num_nodes) * (num_nodes -1)) / 2;
+  cout << "nodes.size(): " << num_nodes << endl;
+  cout << "edges.size(): " << num_edges << endl;
+  cout << "max_edges: " <<  max_edges << endl;
+  cout << "desnity: " << ((double) num_edges) / max_edges << endl;
 }
 
 Graph::~Graph() 
