@@ -14,26 +14,31 @@ static set<Node*> get_exclusion_set(Graph*, int);
 static void reduce_graph(Graph*, int);
 static bool is_clique(set<Node*>);
 static bool find_clique(Graph*, int);
+static void print_metrics(Graph* g, Graph* a, int k);
+static long long combination(int, int);
+static long long factorial(int);
 
 void discrete::find_msc(Graph* g)
 {
   int k = find_starting_k(g);
+  int first_search_k = -1;
   if (k < 0)
   {
     cout << "couldn't find clique" << endl;
     return;
   }
-  cout << "potential cliques staring at size " << k << endl;
   for (int i = k-1; i > 2; i--)
   {
     Graph a(g);
     reduce_graph(&a, i);    
-    if (a.nodes.size() <= 0)
-      cout << "no clique of size " << i+1 << endl;
-    else
+    if (a.nodes.size() > 0)
     {
-      cout << "searching for clique of size " << i+1 << endl; 
-      if (find_clique(&a, i+1)) return;
+      if (first_search_k < 0) first_search_k = i+1;
+      if (find_clique(&a, i+1)) 
+      {
+        print_metrics(g, &a, first_search_k);
+        return;
+      }
     }
   }
 }
@@ -101,7 +106,7 @@ bool find_clique(Graph* g, int k)
     }
     if (is_clique(node_set))
     {
-      cout << "found clique!" << endl;
+      cout << "Clique: ";
       for (auto n : node_set)
         cout << n->idx << " ";
       cout << endl;
@@ -109,4 +114,39 @@ bool find_clique(Graph* g, int k)
     }
   } while (prev_permutation(bitmask.begin(), bitmask.end()));
   return false;
+}
+
+void print_metrics(Graph* g, Graph* a, int k)
+{
+  long long g_comb = 0;
+  long long a_comb = 0;
+  for (int i = 1; i <= g->nodes.size(); i++)
+    g_comb += combination(g->nodes.size(), i);
+  for (int i = 1; i <= k; i++)
+    a_comb += combination(a->nodes.size(), i);
+  cout << "Input Graph Combinations: " << g_comb << endl;
+  cout << "Reduced Graph Combinations: " << a_comb << endl;
+  double reduction_percentage = (((double) g_comb - a_comb) / g_comb) * 100;
+  cout << "Reduction Percentage: " << reduction_percentage << "%" << endl;
+  cout << "\nInput Graph Metrics" << endl;
+  g->print();
+  cout << "\nSubgraph Metrics" << endl;
+  a->print();
+}
+
+long long combination(int n, int k)
+{
+  long long n_fact = factorial(n);
+  long long nsk_fact = factorial(n - k);
+  long long k_fact = factorial(k);
+  long long result = ((n_fact / nsk_fact) / k_fact);
+  return result;
+}
+
+long long factorial(int f)
+{
+  long long result = 1;
+  for (int i = 2; i <= f; i++)
+    result *= i;
+  return result;
 }

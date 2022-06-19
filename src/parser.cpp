@@ -65,7 +65,6 @@ Graph* parse_el_file(char* filename)
     n1->add_edge(e);
     g->add_edge(e);
   }
-  g->print();
   return g;
 }
 
@@ -106,7 +105,6 @@ Graph* parse_al_file(char* filename)
       }
     }
   }
-  g->print();
   return g;
 }
 
@@ -147,6 +145,5 @@ Graph* parse_m_file(char* filename)
     }
     idx++; 
   }
-  g->print();
   return g;
 }
