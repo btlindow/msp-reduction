@@ -1,11 +1,14 @@
 #include <iostream>
 #include <stdlib.h>
+#include <set>
 #include "discrete.hpp"
 
 using namespace std;
 using namespace discrete;
 
 static int find_starting_k(Graph*);
+static set<Node*> get_exclusion_set(Graph*, int);
+static void reduce_graph(Graph*, int);
 
 void discrete::find_msc(Graph* g)
 {
@@ -15,7 +18,14 @@ void discrete::find_msc(Graph* g)
     cout << "couldn't find clique" << endl;
     return;
   }
-  cout << "starting k:\t" << k << endl;
+  for (int i = k-1; i > 2; i--)
+  {
+    Graph a(g);
+    reduce_graph(&a, i);    
+    cout << "~~~~ " << i << " ~~~~" << endl;
+    a.print();
+    cout << "~~~~ " << i << " ~~~~" << endl;
+  }
 }
 
 int find_starting_k(Graph* g)
@@ -27,7 +37,27 @@ int find_starting_k(Graph* g)
   for (int i = g->nodes.size() - 1; i >= 0; i--)
   {
     node_count += degrees[i];
-    if (node_count > i) return i;
+    if (node_count >= i-1) return i;
   }
   return -1;
+}
+
+set<Node*> get_exclusion_set(Graph* g, int d)
+{
+  set<Node*> exclusion_set;
+  for (auto &[idx, node]: g->nodes)
+    if (node->nodes.size() < d)
+      exclusion_set.insert(node);
+  return exclusion_set;
+}
+
+void reduce_graph(Graph* g, int d)
+{
+  set<Node*> exclusion_set = get_exclusion_set(g, d);
+  while(exclusion_set.size() > 0)
+  {
+    for (auto node : exclusion_set)
+      g->remove_node(node);
+    exclusion_set = get_exclusion_set(g, d);
+  }
 }

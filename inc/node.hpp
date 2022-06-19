@@ -15,6 +15,7 @@ namespace discrete
     ~Node();
     void add_node(Node*);
     void add_edge(Edge*);
+    void remove_node(Node*);
     void remove(Node*, Edge*);
     bool is_adjacent(Node*);
     void remove_self();

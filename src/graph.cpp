@@ -35,10 +35,11 @@ void Graph::add_edge(Edge* e)
 
 void Graph::remove_node(Node* n)
 {
-  for (auto& [idx, edge]: n->edges)
+  for (auto &[idx, edge]: n->edges)
     this->edges.erase(edge->idx);
   this->nodes.erase(n->idx);
   n->remove_self();
+  delete n;
 }
 
 void Graph::remove_edge(Edge* e)

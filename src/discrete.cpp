@@ -55,7 +55,6 @@ Graph* discrete::generate_random_graph(int number_nodes, int density)
     std::advance(it, ridx);
     g->remove_edge(it->second);
   }
-  
   return g; 
 }
 

@@ -80,6 +80,5 @@ void generate_graph(int argc, char* argv[])
   write_graph_file_el(g, "graph.el");
   write_graph_file_al(g, "graph.al");
   write_graph_file_m(g, "graph.m");
-  
-  cout << "g->edges.size(): " << g->edges.size() << endl;
+  g->print();
 }
